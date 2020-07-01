@@ -285,10 +285,10 @@ public class CameraViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
 
-        self.previewView.videoPreviewLayer.frame = self.bounds
+        self.previewView.videoPreviewLayer.frame = self.view.bounds
     }
     
     override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
