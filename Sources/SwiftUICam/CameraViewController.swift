@@ -607,7 +607,7 @@ public class CameraViewController: UIViewController {
                 let outputFilePath = (NSTemporaryDirectory() as NSString).appendingPathComponent((outputFileName as NSString).appendingPathExtension("mov")!)
                 movieFileOutput.startRecording(to: URL(fileURLWithPath: outputFilePath), recordingDelegate: self)
             } else {
-                movieFileOutput.stopRecording()
+                //movieFileOutput.stopRecording()
             }
         }
     }
