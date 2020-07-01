@@ -411,14 +411,14 @@ public class CameraViewController: UIViewController {
                     connection.preferredVideoStabilizationMode = .auto
                 }
                 
-                let deviceOrientation = UIDevice.current.orientation
+                /*let deviceOrientation = UIDevice.current.orientation
                 guard let newVideoOrientation = AVCaptureVideoOrientation(rawValue: deviceOrientation.rawValue),
                     deviceOrientation.isPortrait || deviceOrientation.isLandscape else {
                         debugPrint("no orientation")
                         return
                 }
                 
-                connection.videoOrientation = newVideoOrientation
+                connection.videoOrientation = newVideoOrientation*/
             }
             
             self.movieFileOutput = movieFileOutput
