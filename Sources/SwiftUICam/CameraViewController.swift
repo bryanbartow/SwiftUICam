@@ -409,6 +409,12 @@ public class CameraViewController: UIViewController {
             if let connection = movieFileOutput.connection(with: AVMediaType.video) {
                 if connection.isVideoStabilizationSupported {
                     connection.preferredVideoStabilizationMode = .auto
+                    
+                    if self.windowOrientation != .unknown {
+                        if let videoOrientation = AVCaptureVideoOrientation(interfaceOrientation: self.windowOrientation) {
+                            connection.videoOrientation = videoOrientation
+                        }
+                    }
                 }
             }
             
