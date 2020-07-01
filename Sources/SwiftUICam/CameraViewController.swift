@@ -384,7 +384,7 @@ public class CameraViewController: UIViewController {
         }
         
         // Add the photo output.
-        let photoOutput = AVCapturePhotoOutput()
+        /*let photoOutput = AVCapturePhotoOutput()
         
         if session.canAddOutput(photoOutput) {
             session.addOutput(photoOutput)
@@ -394,7 +394,7 @@ public class CameraViewController: UIViewController {
             setupResult = .configurationFailed
             session.commitConfiguration()
             return
-        }
+        }*/
         
         /*
          Do not create an AVCaptureMovieFileOutput when setting up the session because
