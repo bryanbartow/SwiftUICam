@@ -296,7 +296,7 @@ public class CameraViewController: UIViewController {
             
             videoPreviewLayerConnection.videoOrientation = newVideoOrientation
             
-            previewView.frame = view.frame
+            previewView.videoPreviewLayer.frame = view.bounds
         }
     }
     
