@@ -156,6 +156,7 @@ public class CameraViewController: UIViewController {
         previewView.session = session
         previewView.videoPreviewLayer.videoGravity = videoGravity
         previewView.videoPreviewLayer.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
+        previewView.videoPreviewLayer.needsDisplayOnBoundsChange = true
         previewView.frame = view.frame
         view.addSubview(previewView)
         view.backgroundColor = .systemPurple
@@ -284,6 +285,12 @@ public class CameraViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        self.previewView.videoPreviewLayer.frame = self.bounds
+    }
+    
     override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
@@ -296,8 +303,8 @@ public class CameraViewController: UIViewController {
             
             videoPreviewLayerConnection.videoOrientation = newVideoOrientation
             
-            previewView.frame = view.bounds
-            previewView.videoPreviewLayer.frame = view.bounds
+            //previewView.frame = view.bounds
+            //previewView.videoPreviewLayer.frame = view.bounds
         }
     }
     
