@@ -158,11 +158,12 @@ public class CameraViewController: UIViewController {
         previewView.videoPreviewLayer.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
         previewView.frame = view.frame
         view.addSubview(previewView)
-        view.backgroundColor = .systemOrange
-        previewView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        view.backgroundColor = .systemPurple
+        previewView.backgroundColor = .systemOrange
+        /*previewView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         previewView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         previewView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        previewView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        previewView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true*/
         
         // Add Gesture Recognizers
         addGestureRecognizers()
@@ -294,6 +295,8 @@ public class CameraViewController: UIViewController {
             }
             
             videoPreviewLayerConnection.videoOrientation = newVideoOrientation
+            
+            previewView.frame = view.frame
         }
     }
     
