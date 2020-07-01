@@ -621,8 +621,6 @@ public class CameraViewController: UIViewController {
         
         debugPrint("stop movie recording")
         
-        isVideoRecording = false
-        
         movieFileOutput.stopRecording()
     }
     
@@ -689,6 +687,8 @@ extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
     public func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
         // Note: Because we use a unique file path for each recording, a new recording won't overwrite a recording mid-save.
         func cleanup() {
+            isVideoRecording = false
+            
             let path = outputFileURL.path
             if FileManager.default.fileExists(atPath: path) {
                 do {
