@@ -578,6 +578,48 @@ public class CameraViewController: UIViewController {
         }
     }
     
+    public func startMovieRecording() {
+        guard let movieFileOutput = self.movieFileOutput else {
+            return
+        }
+        print("Hey3")
+        
+        let videoPreviewLayerOrientation = previewView.videoPreviewLayer.connection?.videoOrientation
+        
+        sessionQueue.async {
+            if !movieFileOutput.isRecording {
+                if UIDevice.current.isMultitaskingSupported {
+                    self.backgroundRecordingID = UIApplication.shared.beginBackgroundTask(expirationHandler: nil)
+                }
+                
+                // Update the orientation on the movie file output video connection before recording.
+                let movieFileOutputConnection = movieFileOutput.connection(with: .video)
+                movieFileOutputConnection?.videoOrientation = videoPreviewLayerOrientation!
+                
+                let availableVideoCodecTypes = movieFileOutput.availableVideoCodecTypes
+                
+                if availableVideoCodecTypes.contains(.hevc) {
+                    movieFileOutput.setOutputSettings([AVVideoCodecKey: AVVideoCodecType.hevc], for: movieFileOutputConnection!)
+                }
+                
+                // Start recording video to a temporary file.
+                let outputFileName = NSUUID().uuidString
+                let outputFilePath = (NSTemporaryDirectory() as NSString).appendingPathComponent((outputFileName as NSString).appendingPathExtension("mov")!)
+                movieFileOutput.startRecording(to: URL(fileURLWithPath: outputFilePath), recordingDelegate: self)
+            } else {
+                movieFileOutput.stopRecording()
+            }
+        }
+    }
+    
+    public func stopMovieRecording() {
+        guard let movieFileOutput = self.movieFileOutput else {
+            return
+        }
+        
+        movieFileOutput.stopRecording()
+    }
+    
 }
 
 extension CameraViewController: AVCapturePhotoCaptureDelegate {
