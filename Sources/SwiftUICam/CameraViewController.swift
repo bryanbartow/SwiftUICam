@@ -410,11 +410,14 @@ public class CameraViewController: UIViewController {
                 if connection.isVideoStabilizationSupported {
                     connection.preferredVideoStabilizationMode = .auto
                     
-                    if self.windowOrientation != .unknown {
-                        if let videoOrientation = AVCaptureVideoOrientation(interfaceOrientation: self.windowOrientation) {
-                            connection.videoOrientation = videoOrientation
-                        }
+                    let deviceOrientation = UIDevice.current.orientation
+                    guard let newVideoOrientation = AVCaptureVideoOrientation(rawValue: deviceOrientation.rawValue),
+                        deviceOrientation.isPortrait || deviceOrientation.isLandscape else {
+                            debugPrint("no orientation")
+                            return
                     }
+                    
+                    connection.videoOrientation = newVideoOrientation
                 }
             }
             
