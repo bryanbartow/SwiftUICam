@@ -158,6 +158,7 @@ public class CameraViewController: UIViewController {
         previewView.videoPreviewLayer.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
         previewView.frame = view.frame
         view.addSubview(previewView)
+        view.backgroundColor = .systemOrange
         
         // Add Gesture Recognizers
         addGestureRecognizers()
