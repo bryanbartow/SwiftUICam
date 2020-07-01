@@ -579,12 +579,14 @@ public class CameraViewController: UIViewController {
     }
     
     public func startMovieRecording() {
-        guard let movieFileOutput = self.movieFileOutput else {
+        guard let movieFileOutput = self.movieFileOutput, isVideoRecording == false else {
             return
         }
         debugPrint("start movie recording")
         
         let videoPreviewLayerOrientation = previewView.videoPreviewLayer.connection?.videoOrientation
+        
+        isVideoRecording = true
         
         sessionQueue.async {
             if !movieFileOutput.isRecording {
@@ -618,6 +620,8 @@ public class CameraViewController: UIViewController {
         }
         
         debugPrint("stop movie recording")
+        
+        isVideoRecording = false
         
         movieFileOutput.stopRecording()
     }
