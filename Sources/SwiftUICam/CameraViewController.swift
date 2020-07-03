@@ -159,12 +159,6 @@ public class CameraViewController: UIViewController {
         previewView.videoPreviewLayer.needsDisplayOnBoundsChange = true
         previewView.frame = view.frame
         view.addSubview(previewView)
-        view.backgroundColor = .systemPurple
-        previewView.backgroundColor = .systemOrange
-        /*previewView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        previewView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        previewView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        previewView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true*/
         
         // Add Gesture Recognizers
         addGestureRecognizers()
@@ -288,7 +282,8 @@ public class CameraViewController: UIViewController {
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        self.previewView.videoPreviewLayer.frame = self.view.bounds
+        self.previewView.frame = view.frame
+        self.previewView.videoPreviewLayer.frame = view.frame
     }
     
     override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
