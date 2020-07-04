@@ -297,9 +297,6 @@ public class CameraViewController: UIViewController {
             }
             
             videoPreviewLayerConnection.videoOrientation = newVideoOrientation
-            
-            //previewView.frame = view.bounds
-            //previewView.videoPreviewLayer.frame = view.bounds
         }
     }
     
@@ -316,7 +313,7 @@ public class CameraViewController: UIViewController {
         session.beginConfiguration()
         
         //Preset of the Snapchat Camera is .high
-        session.sessionPreset = .high
+        session.sessionPreset = videoQuality
         //.photo is the preset for normal photo in the iOS camera app
         //      session.sessionPreset = .photo
         

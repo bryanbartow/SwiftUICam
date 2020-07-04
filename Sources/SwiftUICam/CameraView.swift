@@ -25,8 +25,9 @@ public struct CameraView: UIViewControllerRepresentable {
     private var pinchToZoom: Bool
     private var tapToFocus: Bool
     private var doubleTapCameraSwitch: Bool
+    private var quality: AVCaptureSession.Preset
     
-    public init(events: UserEvents, applicationName: String, preferredStartingCameraType: AVCaptureDevice.DeviceType = .builtInWideAngleCamera, preferredStartingCameraPosition: AVCaptureDevice.Position = .back, focusImage: String? = nil, pinchToZoom: Bool = true, tapToFocus: Bool = true, doubleTapCameraSwitch: Bool = true) {
+    public init(events: UserEvents, applicationName: String, preferredStartingCameraType: AVCaptureDevice.DeviceType = .builtInWideAngleCamera, preferredStartingCameraPosition: AVCaptureDevice.Position = .back, focusImage: String? = nil, pinchToZoom: Bool = true, tapToFocus: Bool = true, doubleTapCameraSwitch: Bool = true, quality: AVCaptureSession.Preset = .high) {
         self.events = events
         
         self.applicationName = applicationName
@@ -38,6 +39,7 @@ public struct CameraView: UIViewControllerRepresentable {
         self.pinchToZoom = pinchToZoom
         self.tapToFocus = tapToFocus
         self.doubleTapCameraSwitch = doubleTapCameraSwitch
+        self.quality = quality
     }
     
     public func makeUIViewController(context: Context) -> CameraViewController {
@@ -53,6 +55,7 @@ public struct CameraView: UIViewControllerRepresentable {
         cameraViewController.pinchToZoom = pinchToZoom
         cameraViewController.tapToFocus = tapToFocus
         cameraViewController.doubleTapCameraSwitch = doubleTapCameraSwitch
+        cameraViewController.videoQuality = quality
         
         return cameraViewController
     }
