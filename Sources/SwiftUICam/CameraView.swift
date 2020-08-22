@@ -26,8 +26,20 @@ public struct CameraView: UIViewControllerRepresentable {
     private var tapToFocus: Bool
     private var doubleTapCameraSwitch: Bool
     private var quality: AVCaptureSession.Preset
+    private var videoGravity: AVLayerVideoGravity
     
-    public init(events: UserEvents, applicationName: String, preferredStartingCameraType: AVCaptureDevice.DeviceType = .builtInWideAngleCamera, preferredStartingCameraPosition: AVCaptureDevice.Position = .back, focusImage: String? = nil, pinchToZoom: Bool = true, tapToFocus: Bool = true, doubleTapCameraSwitch: Bool = true, quality: AVCaptureSession.Preset = .high) {
+    public init(
+        events: UserEvents,
+        applicationName: String,
+        preferredStartingCameraType: AVCaptureDevice.DeviceType = .builtInWideAngleCamera,
+        preferredStartingCameraPosition: AVCaptureDevice.Position = .back,
+        focusImage: String? = nil,
+        pinchToZoom: Bool = true,
+        tapToFocus: Bool = true,
+        doubleTapCameraSwitch: Bool = true,
+        quality: AVCaptureSession.Preset = .high
+        videoGravity: AVLayerVideoGravity = .resizeAspect
+    ) {
         self.events = events
         
         self.applicationName = applicationName
@@ -40,6 +52,7 @@ public struct CameraView: UIViewControllerRepresentable {
         self.tapToFocus = tapToFocus
         self.doubleTapCameraSwitch = doubleTapCameraSwitch
         self.quality = quality
+        self.videoGravity = videoGravity
     }
     
     public func makeUIViewController(context: Context) -> CameraViewController {
@@ -56,6 +69,7 @@ public struct CameraView: UIViewControllerRepresentable {
         cameraViewController.tapToFocus = tapToFocus
         cameraViewController.doubleTapCameraSwitch = doubleTapCameraSwitch
         cameraViewController.videoQuality = quality
+        cameraViewController.videoGravity = videoGravity
         
         return cameraViewController
     }
