@@ -37,7 +37,7 @@ public struct CameraView: UIViewControllerRepresentable {
         pinchToZoom: Bool = true,
         tapToFocus: Bool = true,
         doubleTapCameraSwitch: Bool = true,
-        quality: AVCaptureSession.Preset = .high
+        quality: AVCaptureSession.Preset = .high,
         videoGravity: AVLayerVideoGravity = .resizeAspect
     ) {
         self.events = events
